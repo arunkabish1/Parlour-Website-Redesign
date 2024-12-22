@@ -30,18 +30,18 @@ const Hero = () => {
         {
           color: fg,
           duration: 0.3,
-          stagger: 0.02,
+          stagger: 0.03,
           scrollTrigger: {
             trigger: char,
             start: "top 90%",
             end: "top 40%",
             scrub: true,
-            markers: false,
+            markers: true,
             toggleActions: "play play reverse reverse",
           },
         }
       );
-    });
+    }); ScrollTrigger.refresh();
   }, []);
 
   const [menVisible, setMenVisible] = useState(true);
@@ -123,9 +123,9 @@ const Hero = () => {
                     alt=""
                   />
                 </div>
-                <div
+                <section
                   ref={revealRef}
-                  className="text-lg font-quicksand font-semibold text-center space-y-7"
+                  className="text-lg font-quicksand font-semibold text-center space-y-7 reveal-type"
                 >
                   <p
                     className="reveal-type"
@@ -155,7 +155,7 @@ const Hero = () => {
                   >
                     Experienced Stylists
                   </p>
-                </div>
+                </section>
                 <div id="demo" className="pt-10 overflow-hidden"></div>
                 <div className="flex justify-center">
                   <button className="px-2 py-1 mb-10 text-sm font-bebas tracking-widest bg-[#145f7a] text-white border-white border rounded-md hover:bg-[#d2e7ee] shadow-sm items-center">
@@ -244,7 +244,7 @@ const Hero = () => {
                   </button>
                 </div>
 
-                <div ref={revealRef} className="">
+                <section ref={revealRef} className="">
                   <div className={` ${hairVisible ? "" : "hidden"}`}>
                     <p
                       className="text-white text-sm text-center font-quicksand p-6 reveal-type"
@@ -294,7 +294,7 @@ const Hero = () => {
                       </a>
                     </div>
                   </div>
-                </div>
+                </section>
               </div>
               <div id="section-3">
                 <div className="relative">
