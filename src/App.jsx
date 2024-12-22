@@ -2,6 +2,7 @@ import Header from "./components/Header"
 import Hero from "./components/Hero"
 import Footer from "./components/Footer"
 import Video from "./components/Videos"
+import './index.css';
 
 const App = () => {
   return (
