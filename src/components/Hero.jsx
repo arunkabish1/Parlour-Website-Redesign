@@ -244,7 +244,7 @@ const Hero = () => {
                   </button>
                 </div>
 
-                <section ref={revealRef} className="">
+                <div ref={revealRef} className="">
                   <div className={` ${hairVisible ? "" : "hidden"}`}>
                     <p
                       className="text-white text-sm text-center font-quicksand p-6 reveal-type"
@@ -294,7 +294,7 @@ const Hero = () => {
                       </a>
                     </div>
                   </div>
-                </section>
+                </div>
               </div>
               <div id="section-3">
                 <div className="relative">
