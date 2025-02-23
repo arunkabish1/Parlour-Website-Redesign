@@ -1,376 +1,166 @@
-import React, { useState, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type"; // Import SplitType
-import bannergirl from "../assets/banner_girl.png";
-import bride from "../assets/bride.png";
-import bg from "../assets/bg.png";
-import pin from "../assets/pin.png";
-import makeupp from "../assets/makeupp.png";
-import s from "../assets/s.png";
-import "../index.css";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import ButtonWrapper from "./ButtonWrapper";
 
 const Hero = () => {
-  const revealRef = useRef(null);
+  return (
+    <section className="w-full mt-6 px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
+      <div>
+      <h1 className="max-w-2xl font-monstserrat font-semibold text-center text-xl leading-snug">
+        Transforming{" "}
+        <span className="relative">
+          Moments, 
+          <svg
+            viewBox="0 0 286 73"
+            fill="none"
+            className="absolute -left-2 -right-2 -top-2 bottom-0 translate-y-1"
+          >
+            <motion.path
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              transition={{
+                duration: 5,
+                ease: "easeInOut",
+              }}
+              d="M142.293 1C106.854 16.8908 6.08202 7.17705 1.23654 43.3756C-2.10604 68.3466 29.5633 73.2652 122.688 71.7518C215.814 70.2384 316.298 70.689 275.761 38.0785C230.14 1.37835 97.0503 24.4575 52.9384 1"
+              stroke="#FACC15"
+              strokeWidth="9"
+            />
+          </svg>
+        </span>{" "}
+       <br /> Creating Beauty
+      </h1>
+        <p className="text-center p-5 md:text-lg text-wrap font-quicksand font-semibold text-slate-900  md:my-6">
+        Your go-to destination for expert beauty services in a relaxing, luxurious environment in <span className="font-extrabold bg-blue-600 rounded-lg px-2 text-white">Thiruvarur.</span> With years of experience and a focus on affordability, we offer everything from haircuts to facials, helping you look and feel 
+        </p>
+        <div className="flex justify-center">
+        <ButtonWrapper  />
+        </div>
+      
+      </div>
+      <ShuffleGrid />
+    </section>
+  );
+};
+
+const shuffle = (array) => {
+  let currentIndex = array.length,
+    randomIndex;
+
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+};
+
+const squareData = [
+  {
+    id: 1,
+    src: "https://images.unsplash.com/photo-1588175768004-4e8a770cc099?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 2,
+    src: "https://images.unsplash.com/flagged/photo-1551854716-8b811be39e7e?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 3,
+    src: "https://images.unsplash.com/photo-1588842867976-fd084ca2c87b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  // {
+  //   id: 4,
+  //   src: "https://images.unsplash.com/photo-1580238053495-b9720401fd45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  // },
+  {
+    id: 5,
+    src: "https://i.pinimg.com/736x/db/e1/be/dbe1be9c78528a156e1ddbac322e4c89.jpg",
+  },
+  {
+    id: 6,
+    src: "https://i.pinimg.com/736x/b7/86/a1/b786a164c03a25595f1a0f6449187f5b.jpg",
+  },
+  {
+    id: 7,
+    src: "https://i.pinimg.com/236x/5e/84/fe/5e84fef1f6e7351ac81685d9ed0ba088.jpg",
+  },
+  {
+    id: 8,
+    src: "https://i.pinimg.com/236x/5d/da/65/5dda65220705d53772d2095cd589b0d5.jpg",
+  },
+  {
+    id: 9,
+    src: "https://i.pinimg.com/236x/a0/20/b3/a020b3bff8a95d10bff59bcb49689986.jpg",
+  },
+  {
+    id: 10,
+    src: "https://i.pinimg.com/236x/48/00/07/480007f9ca4dbf04653fa6d200d32f51.jpg",
+  },
+  {
+    id: 11,
+    src: "https://i.pinimg.com/474x/da/5a/42/da5a428bd25540b6c9770783a6c81d4c.jpg",
+  },
+  // {
+  //   id: 12,
+  //   src: "https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=882&q=80",
+  // },
+  // {
+  //   id: 13,
+  //   src: "https://images.unsplash.com/photo-1560089000-7433a4ebbd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  // },
+  // {
+  //   id: 14,
+  //   src: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80",
+  // },
+  // {
+  //   id: 15,
+  //   src: "https://images.unsplash.com/photo-1606244864456-8bee63fce472?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=681&q=80",
+  // },
+  // {
+  //   id: 16,
+  //   src: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1820&q=80",
+  // },
+];
+
+const generateSquares = () => {
+  return shuffle(squareData).map((sq) => (
+    <motion.div
+      key={sq.id}
+      layout
+      transition={{ duration: 1.5, type: "spring" }}
+      className="w-full h-full"
+      style={{
+        backgroundImage: `url(${sq.src})`,
+        backgroundSize: "cover",
+      }}
+    ></motion.div>
+  ));
+};
+
+const ShuffleGrid = () => {
+  const timeoutRef = useRef(null);
+  const [squares, setSquares] = useState(generateSquares());
 
   useEffect(() => {
-    const splitTypes = revealRef.current.querySelectorAll(".reveal-type");
+    shuffleSquares();
 
-    splitTypes.forEach((char) => {
-      const bg = char.dataset.bgColor;
-      const fg = char.dataset.fgColor;
-
-      const text = new SplitType(char, { types: "chars" });
-
-      gsap.fromTo(
-        text.chars,
-        { color: bg },
-        {
-          color: fg,
-          duration: 0.3,
-          stagger: 0.03,
-          scrollTrigger: {
-            trigger: char,
-            start: "top 90%",
-            end: "top 40%",
-            scrub: true,
-            markers: true,
-            toggleActions: "play play reverse reverse",
-          },
-        }
-      );
-    }); ScrollTrigger.refresh();
+    return () => clearTimeout(timeoutRef.current);
   }, []);
 
-  const [menVisible, setMenVisible] = useState(true);
-  const [womenVisible, setWomenVisible] = useState(false);
-  const [hairVisible, setHairVisible] = useState(true);
-  const [skinVisible, setSkinVisible] = useState(false);
-  const [bridalVisible, setBridalVisible] = useState(false);
+  const shuffleSquares = () => {
+    setSquares(generateSquares());
 
-  const toggleMen = () => {
-    setMenVisible(true);
-    setWomenVisible(false);
-    setBridalVisible(false);
-    setHairVisible(true);
-    setSkinVisible(false);
-  };
-
-  const toggleWomen = () => {
-    setMenVisible(false);
-    setBridalVisible(false);
-    setWomenVisible(true);
-    setHairVisible(true);
-  };
-
-  const Showhair = () => {
-    setHairVisible(true);
-    setSkinVisible(false);
-    setBridalVisible(false);
-  };
-
-  const showSkin = () => {
-    setHairVisible(false);
-    setBridalVisible(false);
-    setSkinVisible(true);
-  };
-
-  const showbridal = () => {
-    setHairVisible(false);
-    setSkinVisible(false);
-    setBridalVisible(true);
+    timeoutRef.current = setTimeout(shuffleSquares, 3000);
   };
 
   return (
-    <div>
-      <div className="bg-[#145f7a] relative min-h-screen">
-        <div className="mt-8 mb-10">
-          <h1 className="reveal-type font-quicksand mb-5 text-white text-xl text-center">
-            Where Love Meets Style.
-          </h1>
-          <p className="text-sm px-10 leading-6 font-sofia text-white text-center">
-            At Rainbow, we believe in the harmony of beauty and excellence. Our
-            mission is to provide top-notch beauty services using the finest and
-            premium products. We strive to create an oasis of serenity where you
-            can relax and leave looking and feeling your best.
-          </p>
-        </div>
-        <div className="flex mt-2 mb-16 flex-row gap-2 justify-center">
-          <button className="px-2 py-1 text-sm bg-white text-[#2596be] rounded-md hover:bg-[#d2e7ee] shadow-sm shadow-gray-300">
-            Book Appointment
-          </button>
-          <button className="px-2 py-1  text-sm bg-[#145f7a] text-white border-white border rounded-md hover:bg-[#d2e7ee] shadow-sm ">
-            Parlour Location
-          </button>
-        </div>
-        <div className="relative  ">
-          <img
-            className="w-full relative top-6 scale-100 right-"
-            src={bannergirl}
-          />
-          <div className="relative  left-0  w-full z-10">
-            <div className="relative">
-              <div className="bg-white  rounded-llg ">
-                <h1 className="text-center px-2 font-mono pt-7 text-2xl">
-                  Why Choose US?
-                </h1>
-                <div>
-                  <img
-                    src={s}
-                    className="rounded-llg px-10 pt-10 pb-7"
-                    alt=""
-                  />
-                </div>
-                <section
-                  ref={revealRef}
-                  className="text-lg font-quicksand font-semibold text-center space-y-7 reveal-type"
-                >
-                  <p
-                    className="reveal-type"
-                    data-bg-color="#cccccc"
-                    data-fg-color="#145f7a"
-                  >
-                    4 Years of Experience
-                  </p>
-                  <p
-                    className="reveal-type"
-                    data-bg-color="#cccccc"
-                    data-fg-color="#145f7a"
-                  >
-                    Uncompromised Quality
-                  </p>
-                  <p
-                    className="reveal-type"
-                    data-bg-color="#cccccc"
-                    data-fg-color="#145f7a"
-                  >
-                    Easy Accessible
-                  </p>
-                  <p
-                    className="reveal-type"
-                    data-bg-color="#cccccc"
-                    data-fg-color="#145f7a"
-                  >
-                    Experienced Stylists
-                  </p>
-                </section>
-                <div id="demo" className="pt-10 overflow-hidden"></div>
-                <div className="flex justify-center">
-                  <button className="px-2 py-1 mb-10 text-sm font-bebas tracking-widest bg-[#145f7a] text-white border-white border rounded-md hover:bg-[#d2e7ee] shadow-sm items-center">
-                    Book A Service Today
-                  </button>
-                </div>
-              </div>
-              <div id="section-3">
-                <div className="flex justify-center gap-5 mt-6">
-                  <button
-                    onClick={toggleMen}
-                    className={` text-2xl font-serif ${
-                      menVisible ? "text-white" : "text-[#3b7083]"
-                    }`}
-                  >
-                    Men
-                  </button>
-                  <button
-                    onClick={toggleWomen}
-                    className={` text-2xl font-serif ${
-                      womenVisible ? "text-white" : "text-[#3b7083]"
-                    }`}
-                  >
-                    Women
-                  </button>
-                </div>
-                <div
-                  id="Men"
-                  className={`flex mt-3 text-white text-lg font-cursive gap-10 justify-center ${
-                    menVisible ? "" : "hidden"
-                  }`}
-                >
-                  <button
-                    className={`${
-                      hairVisible ? "text-white" : "text-[#b8bcbd]"
-                    }`}
-                    onClick={Showhair}
-                  >
-                    Hair
-                  </button>
-                  <button
-                    className={`${
-                      skinVisible ? "text-white" : " text-[#b8bcbd]"
-                    }`}
-                    onClick={showSkin}
-                  >
-                    Skin
-                  </button>
-                  <button
-                    className={`${
-                      bridalVisible ? "text-white" : "text-[#b8bcbd]"
-                    }`}
-                    onClick={showbridal}
-                  >
-                    Pre-wedding & Bridal
-                  </button>
-                </div>
-                <div
-                  className={`flex mt-3  duration-150 text-white text-lg font-cursive gap-10 justify-center ${
-                    womenVisible ? "" : "hidden"
-                  }`}
-                >
-                  <button
-                    className={`${
-                      hairVisible ? "text-white" : "text-[#b8bcbd]"
-                    }`}
-                    onClick={Showhair}
-                  >
-                    Hair
-                  </button>
-                  <button
-                    className={`${
-                      skinVisible ? "text-white" : " text-[#b8bcbd]"
-                    }`}
-                    onClick={showSkin}
-                  >
-                    Skin
-                  </button>
-                  <button
-                    className={`${
-                      bridalVisible ? "text-white" : "text-[#b8bcbd]"
-                    }`}
-                    onClick={showbridal}
-                  >
-                    Pre-wedding & Bridal
-                  </button>
-                </div>
-
-                <section ref={revealRef} className="">
-                  <div className={` ${hairVisible ? "" : "hidden"}`}>
-                    <p
-                      className="text-white text-sm text-center font-quicksand p-6 reveal-type"
-                      data-bg-color="#145f7a"
-                      data-fg-color="white"
-                    >
-                      Naturals offers premium unisex grooming with expert
-                      barbering, precise styling, fades, trims, relaxing
-                      treatments, hair coloring, and luxurious pampering.
-                    </p>
-                  </div>
-                  <div className={` ${skinVisible ? "" : "hidden"}`}>
-                    <p
-                      className="text-white text-sm text-center font-quicksand p-6 reveal-type"
-                      data-bg-color="#145f7a"
-                      data-fg-color="white"
-                    >
-                      At Naturals, the skincare is elevated with advanced
-                      treatments like deep cleansing, hydrating facials,
-                      exfoliation, brightening, and anti-aging solutions,
-                      ensuring total rejuvenation and care.
-                    </p>
-                  </div>
-                  <div className={` ${bridalVisible ? "" : "hidden"}`}>
-                    <p
-                      className="text-white text-sm text-center font-quicksand p-6 reveal-type"
-                      data-bg-color="#145f7a"
-                      data-fg-color="white"
-                    >
-                      Naturals offers exclusive wedding grooming services for
-                      grooms, including tailored haircuts, skin treatments,
-                      facials, body polishing, and relaxing massages.
-                    </p>
-                  </div>
-                  <div>
-                    <img
-                      className="rounded-lg  w-11/12 mb-5 mx-auto "
-                      src={pin}
-                      alt=""
-                    />
-                    <div className="flex justify-center mt-6">
-                      <a
-                        href="https://api.whatsapp.com/message/3UF3YMVU3JMJA1"
-                        className="px-5 py-0.5 mb-5 text-lg font-sofia  bg-[#145f7a] text-white border-white border rounded-md hover:bg-[#d2e7ee] shadow-sm items-center"
-                      >
-                        Book Now
-                      </a>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div id="section-3">
-                <div className="relative">
-                  <div className="">
-                    <img className="" src={bg} alt="bg" />
-                  </div>
-                  <section ref={revealRef} className="absolute top-10 z-30">
-                    <h1
-                      className="text-4xl shadow-sm text-[#145f7a] mb-6 text-center font-semibold font-barlow reveal-type"
-                      data-bg-color="#cccccc"
-                      data-fg-color="#145f7a"
-                    >
-                      Exclusively Bridal
-                    </h1>
-                    <p
-                      className="text-sm font-sofia text-center px-20 py-1 reveal-type"
-                      data-bg-color="#cccccc"
-                      data-fg-color="black"
-                    >
-                      Make your wedding day unforgettable with our luxurious
-                      bridal services. At Naturals, we rely on premium products
-                      and uphold the highest hygiene standards to ensure a
-                      flawless, radiant look. Trust our expert team to provide
-                      you with exceptional care and beauty on your special day.
-                    </p>
-                  </section>
-                  <div className="absolute z-10 bottom-0 py">
-                    <img className="scale-100" src={bride} alt="bride" />
-                  </div>
-                </div>
-                <div></div>
-              </div>
-              <div  id="section-4">
-                <div className="bg-slate-100 rounded-b-lg">
-                  <div ref={revealRef}  className="">
-                    <h1
-                      className="text-center text-lg font-quicksand font-bold text-[#145f7a] p-5 reveal-type"
-                      data-bg-color="#cccccc"
-                      data-fg-color="#145f7a"
-                    >
-                      Rainbow Beauty Academy
-                    </h1>
-                    <p className="text-pretty text-center text-[#145f7a] text-sm p-5 leading-5 font-quicksand whitespace-normal reveal-type" data-bg-color="#cccccc" data-fg-color="#145f7a">
-                      Join Rainbow Beauty Academy to gain top-tier <br /> beauty
-                      training from industry experts. Our programs provide
-                      hands-on experience and essential skills using premium
-                      products, preparing you for a successful career in the
-                      beauty industry.
-                    </p>
-                  </div>
-                  <div className="flex justify-center mt-6">
-                    <a
-                      href="https://api.whatsapp.com/message/3UF3YMVU3JMJA1"
-                      className="px-2 py-0.5 mb-10 text-sm font-sofia  bg-[#145f7a] text-white border-white border rounded-md hover:bg-[#d2e7ee] shadow-sm items-center"
-                    >
-                      Enroll Now
-                    </a>
-                  </div>
-                  <div>
-                    <img className="" src={makeupp} alt="" />
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <div id="section-5" className="">
-                      <h1 className="text-lg mt-3 font-quicksand font-semibold text-white pt-4 text-center">
-                        What Our Valuable Customers Says
-                      </h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="grid grid-cols-3 grid-rows-3 h-[450px] gap-0.5">
+      {squares.map((sq) => sq)}
     </div>
   );
 };

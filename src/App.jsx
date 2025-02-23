@@ -1,16 +1,23 @@
 import Header from "./components/Header"
-import Hero from "./components/Hero"
-import Footer from "./components/Footer"
-import Video from "./components/Videos"
-import './index.css';
+import Intro from "./components/Intro"
+import Hero from './components/Hero.jsx';
+import { RevealLinks } from "./components/RevealLinks.jsx";
+import Modal from './components/Modal.jsx'
+import Videos from './components/Testimonial.jsx'
+import AudioPlayer from "./components/Audio.jsx";
 
 const App = () => {
   return (
-    <div className="bg-[#145f7a]">
-      <Header />
-      <Hero />
-      <Video/>
-      <Footer/>
+    <div className="">
+    <Header />
+    <Hero />
+    <Intro />
+    <Videos />
+    <RevealLinks/>
+    <Modal />
+    <AudioPlayer />
+
+    
     </div>
   )
 }

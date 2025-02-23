@@ -13,6 +13,7 @@ export default {
       'md': '0.375rem',
       'lg': '0.5rem',
       'llg':'50px',
+      'lllg':'600px',
       'full': '9999px',
       'large': '12px',
     },
@@ -23,6 +24,7 @@ export default {
         cursive:[ "Caveat", 'cursive'],
         barlow:['Barlow', 'serif'],
         quicksand:['Quicksand', 'serif'],
+        monstserrat:['Montserrat', 'serif'],
         sofia:["Sofia Sans Semi Condensed", "serif"]
       },
       
